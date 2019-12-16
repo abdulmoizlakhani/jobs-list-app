@@ -6,11 +6,11 @@ const app = express()
 const client = redis.createClient();
 const getAsync = promisify(client.get).bind(client);
 
-const port = process.env.PORT || 3001
+const port = 3001
 
 app.get('/jobs', async (req, res) => {
     const jobs = await getAsync('github');
-    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Origin", "http://localhost:3000");
     res.send(jobs)
 })
 
